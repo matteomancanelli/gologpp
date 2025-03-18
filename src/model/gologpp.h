@@ -123,6 +123,7 @@ class Search;
 class Solve;
 class Test;
 class While;
+class Star;
 class DurativeCall;
 class FieldAccess;
 class ListAccess;
@@ -209,6 +210,7 @@ class SemanticsFactory;
 	(Solve) \
 	(Test) \
 	(While) \
+	(Star) \
 	(Conditional<Instruction>) \
 	(During) \
 	(Reference<Action>) \

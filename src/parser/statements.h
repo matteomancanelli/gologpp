@@ -45,6 +45,7 @@ struct StatementParser : grammar<Instruction *(Scope &)> {
 	rule<Solve *(Scope &)> solve;
 	rule<Test *(Scope &)> test;
 	rule<While *(Scope &)> r_while;
+	rule<Star *(Scope &)> star;
 	rule<Concurrent *(Scope &), locals<Scope *>> concurrent;
 
 	rule<ListPop *(Scope &), locals<ListOpEnd>> list_pop;

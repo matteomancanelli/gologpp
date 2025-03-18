@@ -394,6 +394,13 @@ EC_word Semantics<While>::plterm()
 }
 
 
+EC_word Semantics<Star>::plterm()
+{
+    return ::term(EC_functor("star", 1),
+        element().statement().semantics().plterm()
+    );
+}
+
 
 template<>
 EC_word Semantics<DurativeCall>::plterm()

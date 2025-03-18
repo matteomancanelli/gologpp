@@ -144,6 +144,15 @@ public:
 	EC_word pl_index();
 };
 
+template<>
+class Semantics<Star>
+: public Semantics<Instruction>
+, public GeneralSemantics<Star>
+{
+public:
+    using GeneralSemantics<Star>::GeneralSemantics;
+    virtual EC_word plterm() override;
+};
 
 
 } // namespace gologpp

@@ -71,6 +71,7 @@ StatementParser::StatementParser()
 	compound_statement = block(_r1) | choose(_r1) | conditional(_r1)
 		| pick(_r1)
 		| solve(_r1) | search(_r1) | r_while(_r1)
+		| star(_r1)
 		| concurrent(_r1)
 		| during(_r1)
 	;
@@ -142,6 +143,11 @@ StatementParser::StatementParser()
 		_val = new_<While>(_1, _2)
 	];
 	r_while.name("while");
+
+	star = (lit("star") > statement(_r1)) [
+		_val = new_<Star>(_1)
+	];
+	star.name("star");
 
 	concurrent = ((lit("concurrent") > '{') [
 		_a = new_<Scope>(_r1)

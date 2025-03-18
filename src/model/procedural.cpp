@@ -334,6 +334,30 @@ string While::to_string(const string &pfx) const
 /***********************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+Star::Star(Instruction *statement)
+: statement_(statement)
+{
+    statement_->set_parent(this);
+}
+
+void Star::attach_semantics(SemanticsFactory &f)
+{
+    if (!semantics_) {
+        semantics_ = f.make_semantics(*this);
+        statement_->attach_semantics(f);
+    }
+}
+
+const Instruction &Star::statement() const
+{ return *statement_; }
+
+string Star::to_string(const string &pfx) const
+{ return linesep + pfx + "star " + statement().to_string(pfx); }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/***********************************************************************************************/
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
 Function::Function(
 	Scope *own_scope,
 	const Type &t,

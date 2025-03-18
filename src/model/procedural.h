@@ -335,6 +335,24 @@ protected:
 /***********************************************************************************************/
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Kleene star operator: Execute a program zero or more times.
+ */
+class Star : public Instruction, public NoScopeOwner, public LanguageElement<Star, VoidType> {
+	public:
+		Star(Instruction *statement);
+		virtual void attach_semantics(SemanticsFactory &f) override;
+		const Instruction &statement() const;
+		virtual string to_string(const string &pfx) const override;
+	
+	protected:
+		unique_ptr<Instruction> statement_;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/***********************************************************************************************/
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
 class Procedure
 : public ScopeOwner
 , public Signified<Instruction>
